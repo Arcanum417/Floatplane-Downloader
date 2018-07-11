@@ -3,7 +3,7 @@
 echo "Starting"
 
 echo "Updating permissions..."
-for dir in /opt/Floatplane-Downloader /etc/s6.d /media; do
+for dir in /opt/Floatplane-Downloader /etc/s6.d /config /media; do
   if $(find $dir ! -user $UID -o ! -group $GID|egrep '.' -q); then
     echo "Updating permissions in $dir..."
     chown -R $UID:$GID $dir
