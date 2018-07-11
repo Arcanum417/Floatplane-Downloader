@@ -4,7 +4,7 @@ echo "Starting"
 
 echo "Moving settings file if it doesn't exist..."
 if [ ! -f /config/settings.json ]; then
-  mv /opt/Floatplane-Downloader/settings.json /config
+  cp /opt/Floatplane-Downloader/settings.json /config
 fi
 
 echo "Updating permissions..."
@@ -19,10 +19,8 @@ done
 echo "Done updating permissions."
 
 echo "Setting up settings"
-echo $USERNAME
-echo ${USERNAME}
 sed -i 's/"user": "",/"user": "'$USERNAME'",/' /opt/Floatplane-Downloader/settings.json
-sed -i 's/"password": "",/"password": "'$PASSWORD'",/' /opt/Floatplane-Downloader/settings.json
+sed -i 's/"password": ""/"password": "'$PASSWORD'"/' /opt/Floatplane-Downloader/settings.json
 sed -i 's/"videoFolder": "",/"videoFolder": "'$MEDIA_PATH'",/' /opt/Floatplane-Downloader/settings.json
 
 echo "Done setting up settings"

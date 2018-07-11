@@ -1,11 +1,11 @@
 FROM alpine
 LABEL maintainer="rob1998"
 
-# Env variables for Discord token, command prefix, config path, UID, & GID
-ENV CONFIG_PATH="$PATH_HERE"
-ENV USERNAME="$Username"
-ENV PASSWORD="$Password"
-ENV MEDIA_PATH="$Media"
+# Env variables
+ENV CONFIG_PATH="$CONFIG_PATH"
+ENV USERNAME="$USERNAME"
+ENV PASSWORD="$PASSWORD"
+ENV MEDIA_PATH="$MEDIA_PATH"
 ENV UID=991
 ENV GID=991
 
@@ -23,7 +23,7 @@ RUN apk add -U build-base \
 				python \
 				nodejs \
 				nodejs-npm \
-		# Create dir and clone MediaButler
+		# Create dir and clone Floatplane-Downloader
 		&& mkdir -p /opt \
 		&& cd /opt \
 		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \

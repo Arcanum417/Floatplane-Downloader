@@ -1,3 +1,2 @@
 #!/bin/sh
 exec npm start --prefix /opt/Floatplane-Downloader
-exec grob1998@me.com
