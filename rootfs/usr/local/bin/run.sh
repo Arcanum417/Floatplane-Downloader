@@ -19,8 +19,8 @@ done
 echo "Done updating permissions."
 
 
-sed -i 's/"user": "!",/"user": "'$Username'",/' /opt/Floatplane-Downloader/settings.json
-sed -i 's/"password": "!",/"password": "'$Password'",/' /opt/Floatplane-Downloader/settings.json
-sed -i 's/"videoFolder": "!",/"videoFolder": "'$Media'",/' /opt/Floatplane-Downloader/settings.json
+sed -i 's/"user": "!",/"user": "'$USERNAME'",/' /opt/Floatplane-Downloader/settings.json
+sed -i 's/"password": "!",/"password": "'$PASSWORD'",/' /opt/Floatplane-Downloader/settings.json
+sed -i 's/"videoFolder": "!",/"videoFolder": "'$MEDIA_PATH'",/' /opt/Floatplane-Downloader/settings.json
 
 su-exec $UID:$GID /bin/s6-svscan /etc/s6.d
