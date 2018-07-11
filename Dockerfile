@@ -1,25 +1,44 @@
 FROM alpine
 LABEL maintainer="rob1998"
+# Major thanks to starbix for rewriting this with Alpine
 
-ENV TOKEN="didNotSetTokenGoBackAndSetTheTokenEnvironmentVariable"
-ENV USERNAME=""
-ENV PASSWORD=""
-ENV CONSOLE_LOG=1
+# Env variables for Discord token, command prefix, config path, UID, & GID
+ENV USERNAME="$Username"
+ENV PASSWORD="$Password"
+ENV MEDIA_PATH="$Media"
+ENV UID=991
+ENV GID=991
 
-COPY ./ /app/
+# Copy files
+COPY rootfs /
 
-RUN apk add --no-cache build-base \
-        libssl1.0 \
-        curl \
-        git \
-        nodejs-npm \
-        su-exec \
-        python \
-        nodejs \
-        nodejs-npm \
-    && cd /app \
-    && npm install
+# Install some required packages
+RUN apk add -U build-base \
+				libssl1.0 \
+				curl \
+				git \
+				nodejs-npm \
+				su-exec \
+				s6 \
+				python \
+				nodejs \
+				nodejs-npm \
+		# Create dir and clone MediaButler
+		&& mkdir -p /opt \
+		&& cd /opt \
+		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \
+		# Copy settings example to settings
+		&& cd Floatplane-Downloader \
+		# Install
+		&& npm install \
+		# Set permissions
+		&& chmod a+x /usr/local/bin/* /etc/s6.d/*/* \
+		# Cleanup
+		&& apk del build-base \
+		&& rm -rf /tmp/* /var/cache/apk/*
 
-VOLUME /config
-WORKDIR /app
-CMD ["npm", "start", "${USERNAME}", "${PASSWORD}"]
+# Add config path volume
+VOLUME /media
+
+# Execute run.sh script
+CMD ["run.sh"]
