@@ -2,6 +2,8 @@ FROM alpine
 LABEL maintainer="rob1998"
 
 ENV TOKEN="didNotSetTokenGoBackAndSetTheTokenEnvironmentVariable"
+ENV USERNAME=""
+ENV PASSWORD=""
 ENV CONSOLE_LOG=1
 
 COPY ./ /app/
@@ -20,3 +22,4 @@ RUN apk add --no-cache build-base \
 
 VOLUME /config
 WORKDIR /app
+CMD ["npm", "start", "${USERNAME}", "${PASSWORD}"]
