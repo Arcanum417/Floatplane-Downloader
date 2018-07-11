@@ -3,7 +3,7 @@
 echo "Starting"
 
 echo "Moving settings file if it doesn't exist..."
-if [ ! -f ${CONFIG_PATH}/default.json ]; then
+if [ ! -f ${CONFIG_PATH}/settings.json ]; then
   mv /opt/Floatplane-Downloader/settings.json $CONFIG_PATH
 fi
 
