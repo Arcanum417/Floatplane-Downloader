@@ -20,4 +20,3 @@ RUN apk add --no-cache build-base \
 
 VOLUME /config
 WORKDIR /app
-CMD ["npm", "start"]
