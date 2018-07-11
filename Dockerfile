@@ -1,8 +1,8 @@
 FROM alpine
 LABEL maintainer="rob1998"
-# Major thanks to starbix for rewriting this with Alpine
 
 # Env variables for Discord token, command prefix, config path, UID, & GID
+ENV CONFIG_PATH="$PATH_HERE"
 ENV USERNAME="$Username"
 ENV PASSWORD="$Password"
 ENV MEDIA_PATH="$Media"
@@ -38,7 +38,7 @@ RUN apk add -U build-base \
 		&& rm -rf /tmp/* /var/cache/apk/*
 
 # Add config path volume
-VOLUME /media
+VOLUME /config
 
 # Execute run.sh script
 CMD ["run.sh"]
