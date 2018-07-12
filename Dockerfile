@@ -2,7 +2,7 @@ FROM alpine
 LABEL maintainer="rob1998"
 
 # Env variables
-ENV CONFIG_PATH="/config/"
+ENV CONFIG_PATH="/config"
 ENV USERNAME="$USERNAME"
 ENV PASSWORD="$PASSWORD"
 ENV MEDIA_PATH="/media/floatplane/"
