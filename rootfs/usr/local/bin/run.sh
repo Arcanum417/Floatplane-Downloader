@@ -21,7 +21,7 @@ echo "Done updating permissions."
 echo "Setting up settings"
 sed -i 's/"user": "",/"user": "'$USERNAME'",/' /opt/Floatplane-Downloader/settings.json
 sed -i 's/"password": ""/"password": "'$PASSWORD'"/' /opt/Floatplane-Downloader/settings.json
-sed -i 's/"videoFolder": "",/"videoFolder": "'$MEDIA_PATH'",/' /opt/Floatplane-Downloader/settings.json
+sed -i 's/"videoFolder": "./videos/",/"videoFolder": "'$MEDIA_PATH'",/' /opt/Floatplane-Downloader/settings.json
 
 echo "Done setting up settings"
 
