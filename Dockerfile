@@ -23,6 +23,7 @@ RUN apk add -U build-base \
 				python \
 				nodejs \
 				nodejs-npm \
+				ffmpeg \
 		# Create dir and clone Floatplane-Downloader
 		&& mkdir -p /opt \
 		&& cd /opt \
