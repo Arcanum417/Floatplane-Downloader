@@ -23,7 +23,6 @@ RUN apk add -U build-base \
 				python \
 				nodejs \
 				nodejs-npm \
-				ffmpeg \
 		# Create dir and clone Floatplane-Downloader
 		&& mkdir -p /opt \
 		&& cd /opt \
@@ -37,6 +36,8 @@ RUN apk add -U build-base \
 		# Cleanup
 		&& apk del build-base \
 		&& rm -rf /tmp/* /var/cache/apk/*
+
+RUN apk add --no-cache ffmpeg
 
 # Add config path volume
 VOLUME /config
