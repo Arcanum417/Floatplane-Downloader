@@ -12,7 +12,6 @@ ENV GID=991
 # Copy files
 COPY rootfs /
 
-VOLUME  /app
 VOLUME /config
 
 # Install some required packages
@@ -32,6 +31,7 @@ RUN apk add -U build-base \
 		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \
 		# Copy settings example to settings
 		&& cp -a ./Floatplane-Downloader/. /app/ \
+		&& mkdir -p /app \
 		&& cd /app/ \
 		# Install
         && npm install \
