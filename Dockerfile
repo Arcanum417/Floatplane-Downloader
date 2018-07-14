@@ -2,7 +2,7 @@ FROM alpine
 LABEL maintainer="rob1998"
 
 # Env variables
-ENV CONFIG_PATH="/config"
+ENV CONFIG_PATH="/app"
 ENV USERNAME="$USERNAME"
 ENV PASSWORD="$PASSWORD"
 ENV MEDIA_PATH="/media/floatplane/"
@@ -17,7 +17,6 @@ RUN apk add -U build-base \
 				libssl1.0 \
 				curl \
 				git \
-				nodejs-npm \
 				su-exec \
 				s6 \
 				python \
@@ -28,9 +27,11 @@ RUN apk add -U build-base \
 		&& cd /opt \
 		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \
 		# Copy settings example to settings
-		&& cd Floatplane-Downloader \
+		&& mkdir -p /app \
+		&& cp -a ./Floatplane-Downloader/. /app/ \
+		&& cd /app/ \
 		# Install
-		&& npm install \
+        && npm install \
 		# Set permissions
 		&& chmod a+x /usr/local/bin/* /etc/s6.d/*/* \
 		# Cleanup
@@ -38,9 +39,6 @@ RUN apk add -U build-base \
 		&& rm -rf /tmp/* /var/cache/apk/*
 
 RUN apk add --no-cache ffmpeg
-
-# Add config path volume
-VOLUME /config
 
 # Execute run.sh script
 CMD ["run.sh"]
