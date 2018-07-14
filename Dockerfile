@@ -2,7 +2,7 @@ FROM alpine
 LABEL maintainer="rob1998"
 
 # Env variables
-ENV CONFIG_PATH="/app"
+ENV CONFIG_PATH="/config"
 ENV USERNAME="$USERNAME"
 ENV PASSWORD="$PASSWORD"
 ENV MEDIA_PATH="/media/floatplane/"
@@ -11,6 +11,9 @@ ENV GID=991
 
 # Copy files
 COPY rootfs /
+
+VOLUME  /app
+VOLUME /config
 
 # Install some required packages
 RUN apk add -U build-base \
@@ -26,10 +29,9 @@ RUN apk add -U build-base \
 		# Create dir and clone Floatplane-Downloader
 		&& mkdir -p /opt \
 		&& cd /opt \
-		&& git clone https://github.com/rob1998/Floatplane-Downloader.git
-VOLUME  /app
+		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \
 		# Copy settings example to settings
-RUN		cp -a /opt/Floatplane-Downloader/. /app/ \
+		&& cp -a ./Floatplane-Downloader/. /app/ \
 		&& cd /app/ \
 		# Install
         && npm install \

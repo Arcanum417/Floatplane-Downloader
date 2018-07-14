@@ -2,13 +2,13 @@
 
 echo "Starting"
 
-# echo "Moving settings file"
-# if [ ! -f $CONFIG_PATH/settings.json ]; then
-#   cp /app/settings.json $CONFIG_PATH
-# else
-#   cp -f $CONFIG_PATH/settings.json /app
-# fi
-# echo "Done moving settings file"
+echo "Moving settings file"
+if [ ! -f $CONFIG_PATH/settings.json ]; then
+  cp /app/settings.json $CONFIG_PATH
+else
+  cp -f $CONFIG_PATH/settings.json /app
+fi
+echo "Done moving settings file"
 
 echo "Updating permissions..."
 for dir in /app /etc/s6.d $CONFIG_PATH $MEDIA_PATH; do
