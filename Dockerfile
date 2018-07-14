@@ -29,7 +29,7 @@ RUN apk add -U build-base \
 		&& git clone https://github.com/rob1998/Floatplane-Downloader.git
 VOLUME  /app
 		# Copy settings example to settings
-RUN		cp -a ./Floatplane-Downloader/. /app/ \
+RUN		cp -a /opt/Floatplane-Downloader/. /app/ \
 		&& cd /app/ \
 		# Install
         && npm install \
