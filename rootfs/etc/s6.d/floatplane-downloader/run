@@ -1,2 +1,2 @@
 #!/bin/sh
-exec npm start --prefix /opt/Floatplane-Downloader
+exec npm start --prefix /app

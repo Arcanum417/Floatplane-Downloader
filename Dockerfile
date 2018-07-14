@@ -22,13 +22,14 @@ RUN apk add -U build-base \
 				python \
 				nodejs \
 				nodejs-npm \
+				ffmpeg \
 		# Create dir and clone Floatplane-Downloader
 		&& mkdir -p /opt \
 		&& cd /opt \
-		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \
+		&& git clone https://github.com/rob1998/Floatplane-Downloader.git
+VOLUME  /app
 		# Copy settings example to settings
-		&& mkdir -p /app \
-		&& cp -a ./Floatplane-Downloader/. /app/ \
+RUN		cp -a ./Floatplane-Downloader/. /app/ \
 		&& cd /app/ \
 		# Install
         && npm install \
@@ -37,8 +38,6 @@ RUN apk add -U build-base \
 		# Cleanup
 		&& apk del build-base \
 		&& rm -rf /tmp/* /var/cache/apk/*
-
-RUN apk add --no-cache ffmpeg
 
 # Execute run.sh script
 CMD ["run.sh"]
