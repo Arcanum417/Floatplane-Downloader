@@ -24,6 +24,7 @@ echo "Setting up settings"
 sed -i 's/"user": "",/"user": "'$USERNAME'",/' /app/settings.json
 sed -i 's/"password": ""/"password": "'$PASSWORD'"/' /app/settings.json
 sed -i 's/"videoFolder": ".*",/"videoFolder": "'${MEDIA_PATH//\//\\/}'",/' /app/settings.json
+sed -i 's/"repeatScript": "false",/"repeatScript": "'REPEAT_SCRIPT'",/' /app/settings.json
 echo "Done setting up settings"
 
 echo "Moving settings file"
