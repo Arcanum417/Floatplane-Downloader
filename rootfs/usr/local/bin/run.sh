@@ -9,10 +9,21 @@ if [ "$JUST_RUN" = "N" ]; then
   npm install
 fi
 
+echo "Updating permissions..."
+for dir in /etc/s6.d; do
+  if $(find $dir ! -user $UID -o ! -group $GID|egrep '.' -q); then
+    echo "Updating permissions in $dir..."
+    chown -R $UID:$GID $dir
+  else
+    echo "Permissions in $dir are correct."
+  fi
+done
+echo "Done updating permissions."
+
 echo "Setting up settings"
 sed -i 's/"user": "",/"user": "'$USERNAME'",/' /app/settings.json
 sed -i 's/"password": ""/"password": "'$PASSWORD'"/' /app/settings.json
-sed -i 's/"videoFolder": ".*",/"videoFolder": "${MEDIA_PATH//\//\\/}",/' /app/settings.json
+sed -i 's/"videoFolder": ".*",/"videoFolder": "'${MEDIA_PATH//\//\\/}'",/' /app/settings.json
 echo "Done setting up settings"
 
 echo "Moving settings file"
