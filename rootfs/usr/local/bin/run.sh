@@ -2,6 +2,12 @@
 
 echo "Starting"
 
+echo node version: `node --version`
+
+if [ "$JUST_RUN" = "N" ]; then
+  git clone $GIT_URL /app
+fi
+
 echo "Moving settings file"
 if [ ! -f $CONFIG_PATH/settings.json ]; then
   cp /app/settings.json $CONFIG_PATH

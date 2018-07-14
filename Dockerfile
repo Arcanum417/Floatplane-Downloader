@@ -2,6 +2,8 @@ FROM alpine
 LABEL maintainer="rob1998"
 
 # Env variables
+ENV GIT_URL https://github.com/rob1998/Floatplane-Downloader.git
+ENV JUST_RUN N
 ENV CONFIG_PATH="/config"
 ENV USERNAME="$USERNAME"
 ENV PASSWORD="$PASSWORD"
@@ -25,23 +27,23 @@ RUN apk add -U build-base \
 				nodejs \
 				nodejs-npm \
 				ffmpeg \
-		# Create dir and clone Floatplane-Downloader
-		&& mkdir -p /opt \
-		&& cd /opt \
-		&& git clone https://github.com/rob1998/Floatplane-Downloader.git \
-		# Copy settings example to settings
-		&& cp -a ./Floatplane-Downloader/. /app/ \
-		&& mkdir -p /app \
-		&& cd /app/ \
-		# Install
-        && npm install \
 		# Set permissions
 		&& chmod a+x /usr/local/bin/* /etc/s6.d/*/* \
 		# Cleanup
 		&& apk del build-base \
 		&& rm -rf /tmp/* /var/cache/apk/*
 
-VOLUME /app
+# create and set app directory
+RUN mkdir -p /app/
+WORKDIR /app/
+
+# install app dependencies
+# this is done before the following COPY command to take advantage of layer caching
+COPY package.json .
+RUN npm install
+
+# copy app source to destination container
+COPY . .
 
 # Execute run.sh script
 CMD ["run.sh"]
