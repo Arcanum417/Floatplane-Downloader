@@ -15,7 +15,7 @@
   <Icon>/plugins/dynamix.docker.manager/images/question.png</Icon>
   <ExtraParams/>
   <PostArgs/>
-  <DateInstalled>1531346669</DateInstalled>
+  <DateInstalled>1531649007</DateInstalled>
   <DonateText/>
   <DonateLink/>
   <Description>Floatplane-Downloader forked from Inrixia/Floatplane-Downloader Github[br][br][b]Converted By Community Applications[/b][br][br]Always verify this template (and values) against the dockerhub support page for the container</Description>
@@ -25,8 +25,16 @@
   </Networking>
   <Data>
     <Volume>
-      <HostDir></HostDir>
-      <ContainerDir>/media/floatplane/</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/floatplane/config/</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/appdata/floatplane/app/</HostDir>
+      <ContainerDir>/app</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
   </Data>
@@ -37,15 +45,29 @@
       <Mode/>
     </Variable>
     <Variable>
-      <Value/>
       <Name>USERNAME</Name>
       <Mode/>
     </Variable>
     <Variable>
-      <Value/>
       <Name>PASSWORD</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Name>UID</Name>
+      <Mode/>
+    </Variable>
+    <Variable>
+      <Name>GID</Name>
       <Mode/>
     </Variable>
   </Environment>
   <Labels/>
+  <Config Name="Key 1" Target="NPM_CONFIG_LOGLEVEL" Default="info" Mode="" Description="Container Variable: NPM_CONFIG_LOGLEVEL" Type="Variable" Display="always" Required="false" Mask="false">info</Config>
+  <Config Name="Media" Target="/media/floatplane/" Default="" Mode="rw" Description="Media path to download to" Type="Path" Display="always" Required="false" Mask="false"/>
+  <Config Name="USERNAME" Target="USERNAME" Default="" Mode="" Description="Container Variable: USERNAME" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="PASSWORD" Target="PASSWORD" Default="" Mode="" Description="Container Variable: PASSWORD" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="CONFIG_PATH" Target="/config" Default="" Mode="rw" Description="Config Path" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/floatplane/config/</Config>
+  <Config Name="APP_PATH" Target="/app" Default="" Mode="rw" Description="App Path" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/floatplane/app/</Config>
+  <Config Name="UID" Target="UID" Default="" Mode="" Description="Container Variable: UID" Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="GID" Target="GID" Default="" Mode="" Description="Container Variable: GID" Type="Variable" Display="always" Required="false" Mask="false"/>
 </Container>
