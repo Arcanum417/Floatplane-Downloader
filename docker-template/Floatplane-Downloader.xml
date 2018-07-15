@@ -40,11 +40,6 @@
   </Data>
   <Environment>
     <Variable>
-      <Value>info</Value>
-      <Name>NPM_CONFIG_LOGLEVEL</Name>
-      <Mode/>
-    </Variable>
-    <Variable>
       <Name>USERNAME</Name>
       <Mode/>
     </Variable>
@@ -62,7 +57,6 @@
     </Variable>
   </Environment>
   <Labels/>
-  <Config Name="Key 1" Target="NPM_CONFIG_LOGLEVEL" Default="info" Mode="" Description="Container Variable: NPM_CONFIG_LOGLEVEL" Type="Variable" Display="always" Required="false" Mask="false">info</Config>
   <Config Name="Media" Target="/media/floatplane/" Default="" Mode="rw" Description="Media path to download to" Type="Path" Display="always" Required="false" Mask="false"/>
   <Config Name="USERNAME" Target="USERNAME" Default="" Mode="" Description="Container Variable: USERNAME" Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="PASSWORD" Target="PASSWORD" Default="" Mode="" Description="Container Variable: PASSWORD" Type="Variable" Display="always" Required="false" Mask="false"/>
