@@ -1,8 +1,36 @@
+v4.2.7
+ - Changed videos.json and partial.json to have some locking for writing out files to avoid corruption
+ - Fixed logging setting not working
+
+v4.2.6
+ - Added setting logging
+ - Added setting logFile
+ - Added logging to a file
+ - Added setting ffmpeg
+ - Added the ability to disable ffmpeg processing
+ - Added setting autoFetchServer
+ - Added the ability to automatically fetch download server for your region
+
+v4.1.6
+ - Fixed issue with script failing on videos with no thumbnail
+ - Added videos.json to store downloaded videos
+ - Rewrote video detection code to use guid
+ - Fixed subchannel Ignore not working
+ - Fixed some files being mistaken for channels when doing a episode count
+ - Better error handling & auto restart on partial failure
+
+v4.0.5
+ - Fixed issue with script not handling site returning no videos
+ - Fixed issue with script not fetching subscriptions due to api update
+
+v4.0.4
+ - Fixed login not working due to floatplane.com changes
+ - Fixed login checks to work with new login functionality
+
 v4.0.3
  - Fixed maxVideos not working correctly due to ordering update in 4.0.1
  - Fixed matching for some subChannels not properly ignoring case
  - Fixed update script to properly move new settings for 4.0.0
- - Fixed invalidLogin error
 
 v4.0.2
  - Fixed subscription fetching due to API update
