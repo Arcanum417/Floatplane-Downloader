@@ -5,8 +5,14 @@ echo "Starting"
 echo node version: `node --version`
 
 if [ "$JUST_RUN" = "N" ]; then
+  echo "Getting newest version from GitHub"
+  cp /app/partial.json $CONFIG_PATH
+  rm -rf /app
   git clone $GIT_URL /app
   npm install
+  cp -f $CONFIG_PATH/settings.json /app
+  cp -f $CONFIG_PATH/partial.json /app
+  echo "Update complete"
 fi
 
 echo "Updating permissions..."
