@@ -18,7 +18,7 @@ if [ "$JUST_RUN" = "N" ]; then
 fi
 
 echo "Updating permissions..."
-for dir in /etc/s6.d; do
+for dir in /config /etc/s6.d; do
   if $(find $dir ! -user $UID -o ! -group $GID|egrep '.' -q); then
     echo "Updating permissions in $dir..."
     chown -R $UID:$GID $dir
