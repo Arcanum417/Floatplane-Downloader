@@ -27,36 +27,36 @@ process.on('uncaughtException', function(err) { // "Nice" Error handling, will o
 		fLog('ERROR > Error with "maxVideos"! Please set "maxVideos" to something other than '+settings.maxVideos+' in settings.json')
 		console.log('\u001b[41mERROR> Error with "maxVideos"! Please set "maxVideos" to something other than '+settings.maxVideos+' in settings.json\u001b[0m')
 	} if(err.toString().indexOf('Unexpected end of JSON input') > -1 && err.toString().indexOf('partial.json') > -1) { // If this error and the error is related to this file
-		logstream.write(Date()+" == "+'ERROR > partial.json > Corrupt partial.json file! Attempting to recover...')
+		logStream.write(Date()+" == "+'ERROR > partial.json > Corrupt partial.json file! Attempting to recover...')
 		console.log('\u001b[41mERROR> Corrupt partial.json file! Attempting to recover...\u001b[0m');
 		fs.writeFile("./partial.json", '{}', 'utf8', function (error) { // Just write over the corrupted file with {}
 			if (error) {
-				logstream.write(Date()+" == "+'ERROR > partial.json > Recovery failed! Error: '+error+'\n');
+				logStream.write(Date()+" == "+'ERROR > partial.json > Recovery failed! Error: '+error+'\n');
 				console.log('\u001b[41mRecovery failed! Error: '+error+'\u001b[0m')
 				process.exit()
 			} else {
-				logstream.write(Date()+" == "+'ERROR > videos.json > Recovered! Restarting script...\n');
+				logStream.write(Date()+" == "+'ERROR > videos.json > Recovered! Restarting script...\n');
 				console.log('\u001b[42mRecovered! Restarting script...\u001b[0m');
 				pureStart();
 			}
 		});
 	} if(err.toString().indexOf('Unexpected string in JSON') > -1 && err.toString().indexOf('videos.json') > -1) { // If this error and the error is related to this file
-		logstream.write(Date()+" == "+'ERROR > videos.json > Corrupt videos.json file! Attempting to recover...')
+		logStream.write(Date()+" == "+'ERROR > videos.json > Corrupt videos.json file! Attempting to recover...')
  		console.log('\u001b[41mERROR> Corrupt videos.json file! Attempting to recover...\u001b[0m');
  		fs.writeFile("./videos.json", '{}', 'utf8', function (error) { // Just write over the corrupted file with {}
  			if (error) {
- 				logstream.write(Date()+" == "+'ERROR > videos.json > Recovery failed! Error: '+error)
+ 				logStream.write(Date()+" == "+'ERROR > videos.json > Recovery failed! Error: '+error)
  				console.log('\u001b[41mRecovery failed! Error: '+error+'\u001b[0m')
  				process.exit()
  			} else {
- 				logstream.write(Date()+" == "+'ERROR > videos.json > Recovered! Restarting script...')
+ 				logStream.write(Date()+" == "+'ERROR > videos.json > Recovered! Restarting script...')
  				console.log('\u001b[42mRecovered! Restarting script...\u001b[0m');
  				pureStart();
  			}
  		});
  	} else {
 		console.log(err)
-		logstream.write(Date()+" == "+"UNHANDLED ERROR > "+err)
+		logStream.write(Date()+" == "+"UNHANDLED ERROR > "+err)
 		//throw err
 	}
 });
@@ -372,6 +372,7 @@ function saveSettings() { // Saves all the settings from the current settings ob
 }
 
 function saveVideoLog() { // Function for saving partial data, just writes out the variable to disk
+	if(!videos) videos = [];
 	fs.writeFile("./videos.json", JSON.stringify(videos, null, 2), 'utf8', function (err) {
 		if (err) console.log(err)
 	});
