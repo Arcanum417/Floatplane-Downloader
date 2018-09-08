@@ -10,6 +10,7 @@ if [ "$JUST_RUN" = "N" ]; then
   cp /app/videos.json $CONFIG_PATH
   rm -rf /app
   git clone $GIT_URL /app
+  cd /app
   npm install
   cp -f $CONFIG_PATH/settings.json /app
   cp -f $CONFIG_PATH/partial.json /app

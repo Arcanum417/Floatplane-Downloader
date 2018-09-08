@@ -15,7 +15,7 @@ const spawn = require('child_process').spawn;
 const AdmZip = require('adm-zip');
 
 const settings = require('./settings.json'); // File containing user settings
-const logstream = fs.createWriteStream(settings.logFile, {flags:'a'});
+const logStream = fs.createWriteStream(settings.logFile, {flags:'a'});
 
 process.on('uncaughtException', function(err) { // "Nice" Error handling, will obscure unknown errors, remove or comment for full debugging
 	if (err == "TypeError: JSON.parse(...).forEach is not a function") { // If this error
@@ -67,7 +67,7 @@ if (!fs.existsSync(settings.videoFolder)){ // Check if the new path exists (plus
 }
 
 function fLog(info) {
-	logstream.write(Date()+" == "+info+'\n');
+	logStream.write(Date()+" == "+info+'\n');
 }
 
 const subChannelIdentifiers = {
