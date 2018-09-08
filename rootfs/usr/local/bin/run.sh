@@ -8,7 +8,11 @@ if [ "$JUST_RUN" = "N" ]; then
   echo "Getting newest version from GitHub"
   cp /app/partial.json $CONFIG_PATH
   cp /app/videos.json $CONFIG_PATH
+  sleep 2
+  rm -rf /app
+  sleep 2
   git clone $GIT_URL /app
+  sleep 5
   cd /app
   npm install
   cp -f $CONFIG_PATH/settings.json /app
