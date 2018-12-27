@@ -59,8 +59,32 @@ process.on('uncaughtException', function(err) { // "Nice" Error handling, will o
 	}
 });
 
+// Check if videos file exists.
+if (!fs.existsSync('./videos.json')) {
+	// Create file
+	fs.appendFile('./videos.json', '{}', function (err) {
+		// Tell the user to restart the script (with colors)
+		console.log('\u001b[36mCreated videos.json. Restart the script to continue.\u001b[0m');
+	  });
+}
+// Put partial detection in a timeout to avoid it quitting before the videos check
+setTimeout(function() {
+
+	// Check if partial file exists.
+	if (!fs.existsSync('./partial.json')) {
+		// Create file
+		fs.appendFile('./partial.json', '{}', function (err) {
+			// Tell the user to restart the script (with colors)
+			console.log('\u001b[33mCreated partial.json. Restart the script to continue.\u001b[0m');
+			// Exit here to avoid node trying to recover when it loads partial.json
+			process.exit();
+		});
+	}
+}, 100);
+
+
 const videos = require('./videos.json'); // Persistant storage of videos downloaded
-const partial_data = require('./partial.json'); // File for saving details of partial downloads
+const partial_data = require('./partial.json'); // File for saving details of partial downloads	
 
 if (!fs.existsSync(settings.videoFolder)){ // Check if the new path exists (plus season folder if enabled)
 	fs.mkdirSync(settings.videoFolder); // If not create the folder needed
@@ -466,7 +490,7 @@ function parseKey() { // Get the key used to download videos
 				checkAuth().then(constructCookie).then(parseKey).then(resolve)
 			} else {
 				if (settings.autoFetchServer) {
-					settings.floatplaneServer = body.slice(1, body.lastIndexOf('floatplaneclub.com')+18).replace('Edge01', 'Edge02');
+					settings.floatplaneServer = body.slice(1, body.lastIndexOf('floatplane.com')+18).replace('Edge01', 'Edge02');
 				}
 				settings.key = body.replace(/.*wmsAuthSign=*/, '') // Strip everything except for the key from the generated url
 				fLog("Init-Key > Key Fetched")
