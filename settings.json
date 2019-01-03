@@ -1,7 +1,7 @@
 {
   "version": "4.2.8",
   "videoFolder": "./videos/",
-  "maxVideos": 100,
+  "maxVideos": 30,
   "maxParallelDownloads": -1,
   "downloadArtwork": true,
   "artworkFormat": "png",
