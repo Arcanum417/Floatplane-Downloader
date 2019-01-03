@@ -11,6 +11,7 @@ if [ "$JUST_RUN" = "N" ]; then
   sleep 2
   rm -rf /app
   sleep 2
+  cd /
   git clone $GIT_URL /app
   sleep 5
   cd /app
