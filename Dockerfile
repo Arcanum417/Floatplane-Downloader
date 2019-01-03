@@ -2,7 +2,7 @@ FROM alpine
 LABEL maintainer="rob1998"
 
 # Env variables
-ENV GIT_URL "https://github.com/rob1998/Floatplane-Downloader.git"
+ENV GIT_URL "https://github.com/Arcanum417/Floatplane-Downloader.git"
 ENV JUST_RUN N
 ENV CONFIG_PATH="/config"
 ENV USERNAME="$USERNAME"
