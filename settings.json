@@ -30,7 +30,7 @@
   "plexSection": "0",
   "plexScannerInstall": "C:/Program Files (x86)/Plex/Plex Media Server/Plex Media Scanner.exe",
   "autoFetchServer": true,
-  "floatplaneServer": "https://Edge02-na.floatplaneclub.com:443",
+  "floatplaneServer": "https://Edge01-na.floatplane.com",
   "video_res": 720,
   "user": "",
   "password": "",
