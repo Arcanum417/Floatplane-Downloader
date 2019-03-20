@@ -600,8 +600,8 @@ function getVideos() {
 								*/
 							} else if(settings.yearsAsSeasons) { // If your formatting the videos with the YEAR as the season then
 								var date = new Date(video.releaseDate)
-								var seasonNumber = date.getFullYear() // Set the seasonNumber to be the YEAR, eg 2018
-								rawPath = rawPath + date.getFullYear()+'/'
+								var seasonNumber = date.getFullYear().toString().substring(2) // Set the seasonNumber to be the YEAR, eg 18
+								rawPath = rawPath + seasonNumber+'/'
 							}
 							if (!fs.existsSync(rawPath)){ // Check if the new path exists (plus season folder if enabled)
 								fLog('Videos-FileSystem > "'+rawPath+'"'+" doesn't exit... Creating'")
