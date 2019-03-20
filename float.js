@@ -578,10 +578,10 @@ function getVideos() {
 							if(settings.monthsAsSeasons) { // If your formatting the videos with the YEAR+MONTH as the season then
 								var date = new Date(video.releaseDate) // Generate a new date from the publish date pulled above
 								if(date.getMonth() < 10) { // If the month is less than 10 add a 0 to it
-									var seasonNumber = date.getFullYear().toString().substring(1)+'0'+date.getMonth() // Set the seasonNumber to be the YEAR+MONTH, eg 201801
+									var seasonNumber = date.getFullYear().toString().substring(3)+'0'+date.getMonth() // Set the seasonNumber to be the YEAR+MONTH, eg 201801
 									rawPath = rawPath + seasonNumber+'/' // Set the raw path to include the new season folder
 								} else {
-									var seasonNumber = date.getFullYear().toString().substring(1)+date.getMonth()
+									var seasonNumber = date.getFullYear().toString().substring(3)+date.getMonth()
 									rawPath = rawPath + seasonNumber+'/'
 								}
 							} else if(settings.yearsAsSeasons) { // If your formatting the videos with the YEAR as the season then
