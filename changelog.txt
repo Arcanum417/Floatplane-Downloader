@@ -1,3 +1,37 @@
+v4.5.0
+ - Variety of other rewrites/changes and fixes
+ - Added setting TheWANShow
+ - Added youtube download support for The WAN Show
+ - Rewrote download functions to consolidate code
+ - Changed Techquickie to determine subChannel by title identifier rather than description
+ - Rewrote most text concat to use new method
+ - Removed outdated/leftover code from older versions
+ - Added new function for determining best edge server to use
+ - Removed unnecessary settings save
+ - Added check to ensure script does not repeat if its still downloading
+
+v4.4.0
+ - Updated all dependencies to remove security vulnerabilities
+ - Updated default floatplane API url to new formatting
+ - Added debug function for internal use
+ - Removed old fixe forcing the use of the Edge02 API
+ - Fixed setting logging so it actually disables logging
+ - Fixed subscription storage and parsing to avoid duplicates and other issues
+ - Removed old code
+ - Fixed spacing code to work properly for small numbers of videos
+ - Updated partial.json to be properly spaced
+ - Fixed script restarts so on recovered errors its automatic
+ - Added support for 2Factor Authentication
+ - Changed login code to better deal with repeated incorrect details
+
+
+v4.3.0
+ - Keep existing subscription perferances when doing subscription checks | Thanks @peskdale
+ - Added setting artworkFormat > Allows setting the file type used for thumbnails | Thanks @peskdale
+ - Added setting formatWithSubChannel > Allows removing the subChannel eg, "TechLinked" from title | Thanks @peskdale
+ - Fixed issues with Floatplane API Url changing for downloading videos | Thanks @peskdale
+ - Fixed TechLinked detection code using outdated references | Thanks @peskdale
+
 v4.2.8
  - Prouser123 Helped with fixes & spelling
  - Fixed issue with fetching subscriptions
